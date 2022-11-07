@@ -35,10 +35,18 @@ def get_config():
     parser.add_argument('--use_tensorboard', action='store_true', help='Use tensorboard to plot and save curves, otherwise save the curves locally.')
 
     '''
-    Training Configuration of FixMatch
+    Mask-specific arguments
     '''
     parser.add_argument('--exp_type', type=str, default="baseline", 
                         help="select from baseline, noaug, or cutout-only to use different strong data uagmentation methods")
+    parser.add_argument('--mask_ratio', type=float, default=0.0, 
+                        help="ratio controls the size of mask")
+
+
+    
+    '''
+    Training Configuration of FixMatch
+    '''
     parser.add_argument('--epoch', type=int, default=1)
     parser.add_argument('--num_train_iter', type=int, default=20,
                         help='total number of training iterations')
