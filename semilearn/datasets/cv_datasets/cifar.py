@@ -9,7 +9,7 @@ import math
 
 from torchvision import transforms
 from .datasetbase import BasicDataset
-from semilearn.datasets.augmentation import RandAugment, RandomResizedCropAndInterpolation
+from semilearn.datasets.augmentation import RandAugment, RandomResizedCropAndInterpolation, MaskAugment
 from semilearn.datasets.utils import split_ssl_data
 
 
@@ -21,7 +21,7 @@ std['cifar10'] = [0.229, 0.224, 0.225]
 std['cifar100'] = [x / 255 for x in [68.2, 65.4, 70.4]]
 
 
-def get_cifar(args, alg, name, num_labels, num_classes, data_dir='./data', include_lb_to_ulb=True, exp_type="baseline"):
+def get_cifar(args, alg, name, num_labels, num_classes, mask_ratio, data_dir='./data', include_lb_to_ulb=True, exp_type="baseline"):
     
     data_dir = os.path.join(data_dir, name.lower())
     dset = getattr(torchvision.datasets, name.upper())
@@ -58,6 +58,15 @@ def get_cifar(args, alg, name, num_labels, num_classes, data_dir='./data', inclu
             RandAugment(0, 0), # only cutout
             transforms.ToTensor(),
             transforms.Normalize(mean[name], std[name])
+        ])
+    elif exp_type == "mask":
+        transform_strong = transforms.Compose([
+            transforms.Resize(crop_size),
+            transforms.RandomCrop(crop_size, padding=int(crop_size * (1 - crop_ratio)), padding_mode='reflect'),
+            transforms.RandomHorizontalFlip(),
+            MaskAugment(mask_ratio, mask_color=tuple(mean[name])),
+            transforms.ToTensor(),
+            transforms.Normalize(mean[name], std[name]),
         ])
     else:
         transform_strong = transforms.Compose([
