@@ -37,7 +37,8 @@ def get_config():
     '''
     Training Configuration of FixMatch
     '''
-
+    parser.add_argument('--exp_type', type=str, default="baseline", 
+                        help="select from baseline, noaug, or cutout-only to use different strong data uagmentation methods")
     parser.add_argument('--epoch', type=int, default=1)
     parser.add_argument('--num_train_iter', type=int, default=20,
                         help='total number of training iterations')
