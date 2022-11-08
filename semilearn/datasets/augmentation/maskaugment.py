@@ -43,7 +43,7 @@ class MaskAugment:
 
         assert 0 <= self.mask_ratio < 1
         mask_ratio_perpatch=self.mask_ratio/self.mask_npatch
-        for i in range(self.mask_npatch):
+        for i in range(int(self.mask_npatch)):
             img = Cutout(img, mask_ratio_perpatch, self.mask_color, self.mask_position)
         return img
 
