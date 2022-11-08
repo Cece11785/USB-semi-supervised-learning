@@ -41,6 +41,8 @@ def get_config():
                         help="select from baseline, noaug, or cutout-only to use different strong data uagmentation methods")
     parser.add_argument('--mask_ratio', type=float, default=0.0, 
                         help="ratio controls the size of mask")
+    parser.add_argument('--mask_npatch', type=float, default=1.0, 
+                        help="number of masking patches")
 
 
     
