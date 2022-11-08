@@ -31,7 +31,7 @@ class MaskAugment:
     mask_color: str or tuple, specify color in 3 channels, or 'average' for average of this image
     mask_position: str, defaults to and only supports 'random'
     """
-    def __init__(self, mask_ratio='random', mask_npatch=1, mask_color=(0, 0, 0), mask_position='random'):
+    def __init__(self, mask_ratio='random', mask_npatch=1.0, mask_color=(0, 0, 0), mask_position='random'):
         self.mask_ratio = mask_ratio
         self.mask_npatch= mask_npatch
         self.mask_color = tuple([int(c) for c in mask_color])
