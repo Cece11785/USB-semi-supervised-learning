@@ -1,8 +1,8 @@
 algorithm: fixmatch
 save_dir: ./saved_models/exp_cv/
-save_name: fixmatch_cifar100_400_0_mask0.7_4
+save_name: fixmatch_cifar100_400_0_mask0.7_10
 resume: True
-load_path: ./saved_models/exp_cv//fixmatch_cifar100_400_0_mask0.7_4/latest_model.pth
+load_path: ./saved_models/exp_cv//fixmatch_cifar100_400_0_mask0.7_10/latest_model.pth
 overwrite: True
 use_tensorboard: True
 exp_type: mask
