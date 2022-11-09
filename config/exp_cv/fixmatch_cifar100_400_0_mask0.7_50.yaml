@@ -18,7 +18,7 @@ uratio: 1
 ema_m: 0.0
 hard_label: True
 mask_ratio: 0.7
-mask_npatch: 10.0
+mask_npatch: 50.0
 T: 0.5
 p_cutoff: 0.95
 ulb_loss_ratio: 1.0
